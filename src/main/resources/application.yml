@@ -1,2 +1,17 @@
 server:
   port: 8080
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://online-store-db.database.windows.net:1433;database=online-store-db;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    username: a01133518
+    password: ENC(M9JYxT9ZPvCs4bSdSEtFVrYtugGPRauE/IL+hHbtnCA=)
+    initialization-mode: always
+  jpa:
+    show-sql: true
+
+
