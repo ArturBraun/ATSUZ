@@ -1,14 +1,15 @@
 package com.business.OnlineStore.api;
 
 import com.business.OnlineStore.model.Category;
+import com.business.OnlineStore.model.Image;
 import com.business.OnlineStore.model.SimpleMessage;
 import com.business.OnlineStore.servicies.CategoriesService;
+import com.business.OnlineStore.servicies.ImagesService;
 import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -18,10 +19,12 @@ import java.util.logging.Logger;
 public class ApiController {
     private Logger logger = Logger.getLogger(ApiController.class.getName());
     private CategoriesService categoriesService;
+    private ImagesService imagesService;
 
     @Autowired
-    public ApiController(CategoriesService categoriesService) {
+    public ApiController(CategoriesService categoriesService, ImagesService imagesService) {
         this.categoriesService = categoriesService;
+        this.imagesService = imagesService;
     }
 
     @GetMapping("/v1/get-message")
@@ -37,6 +40,23 @@ public class ApiController {
         logger.info(allCategories.toString());
 
         return allCategories;
+    }
+
+    @GetMapping(
+            value = "/v1/image",
+            produces = MediaType.IMAGE_JPEG_VALUE
+    )
+    public ResponseEntity<byte[]> getImageWithMediaType(@RequestParam Long id) {
+        logger.info(String.format("Returning image of id = %d", id));
+        return ResponseEntity.ok(this.imagesService.getImageById(id).get().getImageContent());
+    }
+
+    @PostMapping("/v1/image")
+    public void addNewImage(@RequestBody byte[] imageContent){
+        Image image = new Image(imageContent);
+        logger.info("Saving new image to DB");
+        this.imagesService.addNewImage(image);
+        logger.info(String.format("New image of id = %d saved", image.getId()));
     }
 
 
