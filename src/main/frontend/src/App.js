@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { sendGetRequest } from './services/ApiCall'
+import Image from './components/Image';
 
 function App() {
   const [data, setData] = useState({})
@@ -32,6 +33,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Image imageLink="/api/v1/image?id=2" altText="tekst alternatywny"/>
     </div>
   );
 }
