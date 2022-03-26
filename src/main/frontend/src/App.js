@@ -1,8 +1,13 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { sendGetRequest } from './services/ApiCall'
 import Image from './components/Image';
+import Header from './components/header/Header'
 
 function App() {
   const [data, setData] = useState({})
@@ -19,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
