@@ -48,7 +48,7 @@ const Header = () => {
             </ul>
             <form className="d-flex">
                 <input className="form-control me-2" type="search" placeholder="Szukaj" aria-label="Search" />
-                <button className="btn btn-outline-success" type="submit">Szukaj</button>
+                <button className="btn btn-outline-success search-btn" type="submit">Szukaj</button>
                 <a className="navbar-brand shopping-cart" href="/">
                     <img src={shoppingCart} alt="Logo koszyka link" width="30" height="24" className="d-inline-block align-text-top" />
                 </a>
