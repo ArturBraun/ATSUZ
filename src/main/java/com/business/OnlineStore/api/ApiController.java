@@ -2,9 +2,11 @@ package com.business.OnlineStore.api;
 
 import com.business.OnlineStore.model.Category;
 import com.business.OnlineStore.model.Image;
+import com.business.OnlineStore.model.Product;
 import com.business.OnlineStore.model.SimpleMessage;
 import com.business.OnlineStore.servicies.CategoriesService;
 import com.business.OnlineStore.servicies.ImagesService;
+import com.business.OnlineStore.servicies.ProductsService;
 import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,11 +22,13 @@ public class ApiController {
     private Logger logger = Logger.getLogger(ApiController.class.getName());
     private CategoriesService categoriesService;
     private ImagesService imagesService;
+    private ProductsService productsService;
 
     @Autowired
-    public ApiController(CategoriesService categoriesService, ImagesService imagesService) {
+    public ApiController(CategoriesService categoriesService, ImagesService imagesService, ProductsService productsService) {
         this.categoriesService = categoriesService;
         this.imagesService = imagesService;
+        this.productsService = productsService;
     }
 
     @GetMapping("/v1/get-message")
@@ -59,6 +63,13 @@ public class ApiController {
         logger.info(String.format("New image of id = %d saved", image.getId()));
     }
 
+    @GetMapping("/v1/product")
+    public Product getProductById(@RequestParam Long id){
+        logger.info(String.format("Returning product of id = %d", id));
+        Product product = this.productsService.getProductById(id).get();
+        logger.info(product.toString());
 
+        return product;
+    }
 
 }
