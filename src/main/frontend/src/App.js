@@ -7,7 +7,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { sendGetRequest } from './services/ApiCall'
 import Header from './components/header/Header'
-import Product from './components/Product';
+import FeaturedProducts from './components/featured-products/Featured-products';
 
 function App() {
   const [data, setData] = useState({})
@@ -40,7 +40,7 @@ function App() {
         </a>
       </header>
       <div>
-        <Product productId="1" />
+        <FeaturedProducts />
       </div>
     </div>
   );
