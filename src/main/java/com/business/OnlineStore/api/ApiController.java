@@ -72,4 +72,13 @@ public class ApiController {
         return product;
     }
 
+    @GetMapping("/v1/products-by-category")
+    public List<Product> getProductsByCategoryId(@RequestParam Long categoryId){
+        logger.info(String.format("Returning all products from category of id = %d", categoryId));
+        List<Product> products = this.categoriesService.getAllProductsFromCategory(categoryId);
+        logger.info(products.toString());
+
+        return products;
+    }
+
 }

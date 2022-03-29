@@ -1,6 +1,7 @@
 package com.business.OnlineStore.servicies;
 
 import com.business.OnlineStore.model.Category;
+import com.business.OnlineStore.model.Product;
 import com.business.OnlineStore.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,11 @@ public class CategoriesService {
 
     public List<Category> getAllCategories(){
         return categoryRepository.findAll();
+    }
+
+    public List<Product> getAllProductsFromCategory(Long categoryId){
+        Category category = categoryRepository.findById(categoryId).get();
+        return category.getProducts();
     }
 
 }

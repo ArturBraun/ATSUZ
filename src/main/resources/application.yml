@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:sqlserver://online-store-db.database.windows.net:1433;database=online-store-db;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     username: a01133518
-    password: ENC(M9JYxT9ZPvCs4bSdSEtFVrYtugGPRauE/IL+hHbtnCA=)
+    password: '%Ab0113351801133518%'
     initialization-mode: always
   jpa:
     show-sql: true

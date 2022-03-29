@@ -1,5 +1,6 @@
 package com.business.OnlineStore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public class Product {
     @Column(name = "Product_Price")
     private BigDecimal price;
 
-    @Column(name = "Product_Category_Id")
+    @Column(name = "Product_Category_Id", insertable = false, updatable = false)
     private Long categoryId;
 
     @Column(name = "Product_Delivery_Waiting_Time")
@@ -29,6 +30,11 @@ public class Product {
 
     @Column(name = "Product_Image_Id")
     private Long imageId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Product_Category_Id")
+    @JsonBackReference
+    private Category category;
 
     public Product() {
     }
@@ -79,6 +85,14 @@ public class Product {
 
     public void setImageId(Long imageId) {
         this.imageId = imageId;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
