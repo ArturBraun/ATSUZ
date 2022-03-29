@@ -1,21 +1,36 @@
 import './Featured-products.css'
 import Product from '../product/Product';
+import { useEffect, useState } from 'react';
+import { sendGetRequest } from '../../services/ApiCall'
 
 const FeaturedProducts = () => {
-    const featuredProductsIds = [2,3];
+    const [featuredProductsIds, setFeaturedProductsIds] = useState({})
+
+    useEffect( () => {    
+      const fetchData = async () => {    
+        const dataFromServer = await sendGetRequest('api/v1/featured-products')
+        setFeaturedProductsIds(dataFromServer)
+      }
+      fetchData()
+    }, [])
 
     return (
-        <div class="card">
-            <h5 class="card-header">Polecane produkty</h5>
-            <div class="card-body">
-                <div className="container-fluid bg-trasparent p-5" >
-                    <div className="row row-cols-2 gx-5">
-                        <div className="col">
-                            <Product productId={featuredProductsIds[0]} />
-                        </div>
-                        <div className="col">
-                            <Product productId={featuredProductsIds[1]} />
-                        </div>
+        <div className="card">
+            <h5 className="card-header">Polecane produkty</h5>
+            <div className="card-body">
+                <div className="container-fluid bg-trasparent p-3" >
+                    <div className="row row-cols-3 gx-5">
+
+                        {
+                            featuredProductsIds.length > 0 ? (
+                                featuredProductsIds.map(product => (
+                                    <div className="col">
+                                        <Product id={product.id} productData={product} />
+                                    </div>
+                                ))  
+                            ) : (<> </>)
+                        }
+                        
                     </div>
                 </div>
             </div>

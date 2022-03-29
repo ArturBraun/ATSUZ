@@ -23,4 +23,8 @@ public class ImagesService {
     public Optional<Image> getImageById(Long id){
         return this.imageRepository.findById(id);
     }
+
+    public void updateImage(Image image){
+        this.imageRepository.saveAndFlush(image);
+    }
 }

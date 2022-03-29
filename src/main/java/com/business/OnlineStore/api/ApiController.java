@@ -63,6 +63,14 @@ public class ApiController {
         logger.info(String.format("New image of id = %d saved", image.getId()));
     }
 
+    @PostMapping("/v1/update-image")
+    public void updateImage(@RequestParam Long id, @RequestBody byte[] imageContent){
+        Image image = new Image(id, imageContent);
+        logger.info(String.format("Updating image with id = %d", image.getId()));
+        this.imagesService.updateImage(image);
+        logger.info(String.format("Image with id = %d updated", image.getId()));
+    }
+
     @GetMapping("/v1/product")
     public Product getProductById(@RequestParam Long id){
         logger.info(String.format("Returning product of id = %d", id));
@@ -76,6 +84,15 @@ public class ApiController {
     public List<Product> getProductsByCategoryId(@RequestParam Long categoryId){
         logger.info(String.format("Returning all products from category of id = %d", categoryId));
         List<Product> products = this.categoriesService.getAllProductsFromCategory(categoryId);
+        logger.info(products.toString());
+
+        return products;
+    }
+
+    @GetMapping("/v1/featured-products")
+    public List<Product> getFeaturedProducts(){
+        logger.info("Returning top 3 featured products");
+        List<Product> products = this.productsService.getTop3FeaturedProducts();
         logger.info(products.toString());
 
         return products;

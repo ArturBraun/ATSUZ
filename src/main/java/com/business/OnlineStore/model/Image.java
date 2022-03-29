@@ -21,6 +21,11 @@ public class Image {
         this.imageContent = imageContent;
     }
 
+    public Image(Long id, byte[] imageContent) {
+        this.id = id;
+        this.imageContent = imageContent;
+    }
+
     public byte[] getImageContent() {
         return imageContent;
     }
