@@ -98,4 +98,13 @@ public class ApiController {
         return products;
     }
 
+    @GetMapping("/v1/hits-of-the-day")
+    public List<Product> getHitsOfTheDay(){
+        logger.info("Returning top 2 hits of the day");
+        List<Product> products = this.productsService.getTop2HitsOfTheDay();
+        logger.info(products.toString());
+
+        return products;
+    }
+
 }

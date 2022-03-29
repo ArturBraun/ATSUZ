@@ -13,7 +13,7 @@
 				"body": {
 					"mode": "file",
 					"file": {
-						"src": "/C:/Users/artur/Desktop/studia_OKNO/architekturyTechnologieSystemowInternetowych/projekt/images/img6_hp-pavilion-gaming.jpg"
+						"src": "/C:/Users/artur/Desktop/studia_OKNO/architekturyTechnologieSystemowInternetowych/projekt/images/img16_Huawei-MatePad-T10s.jpg"
 					}
 				},
 				"url": {
@@ -38,7 +38,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/image?id=1",
+					"raw": "http://localhost:8080/api/v1/image?id=16",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -52,7 +52,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "16"
 						}
 					]
 				}
@@ -113,7 +113,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/products-by-category?categoryId=3",
+					"raw": "http://localhost:8080/api/v1/products-by-category?categoryId=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,8 +127,83 @@
 					"query": [
 						{
 							"key": "categoryId",
-							"value": "3"
+							"value": "2"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateImage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/artur/Desktop/studia_OKNO/architekturyTechnologieSystemowInternetowych/projekt/images/img11_OnePlus-8-Pro.jpg"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/update-image?id=11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"update-image"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFeaturedProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/featured-products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"featured-products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHitsOfTheDay",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/hits-of-the-day",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"hits-of-the-day"
 					]
 				}
 			},

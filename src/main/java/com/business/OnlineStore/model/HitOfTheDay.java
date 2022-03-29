@@ -4,18 +4,18 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Featured_Products")
-public class FeaturedProduct {
+@Table(name = "Hits_Of_The_Day")
+public class HitOfTheDay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Featured_Id")
+    @Column(name = "Hit_Id")
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "Featured_Product_Id")
+    @JoinColumn(name = "Hit_Product_Id")
     private Product product;
 
-    public FeaturedProduct() {
+    public HitOfTheDay() {
     }
 
     public Long getId() {
@@ -38,7 +38,7 @@ public class FeaturedProduct {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FeaturedProduct that = (FeaturedProduct) o;
+        HitOfTheDay that = (HitOfTheDay) o;
         return Objects.equals(id, that.id);
     }
 
@@ -49,7 +49,7 @@ public class FeaturedProduct {
 
     @Override
     public String toString() {
-        return "FeaturedProduct{" +
+        return "HitOfTheDay{" +
                 "id=" + id +
                 '}';
     }
