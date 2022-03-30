@@ -113,7 +113,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/products-by-category?categoryId=2",
+					"raw": "http://localhost:8080/api/v1/products-by-category?categoryId=4&sort=deliveryWaitingTime,desc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,7 +127,11 @@
 					"query": [
 						{
 							"key": "categoryId",
-							"value": "2"
+							"value": "4"
+						},
+						{
+							"key": "sort",
+							"value": "deliveryWaitingTime,desc"
 						}
 					]
 				}

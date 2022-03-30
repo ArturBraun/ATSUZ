@@ -9,6 +9,7 @@ import com.business.OnlineStore.servicies.ImagesService;
 import com.business.OnlineStore.servicies.ProductsService;
 import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -81,9 +82,9 @@ public class ApiController {
     }
 
     @GetMapping("/v1/products-by-category")
-    public List<Product> getProductsByCategoryId(@RequestParam Long categoryId){
+    public List<Product> getProductsByCategoryId(@RequestParam Long categoryId, Sort sort){
         logger.info(String.format("Returning all products from category of id = %d", categoryId));
-        List<Product> products = this.categoriesService.getAllProductsFromCategory(categoryId);
+        List<Product> products = this.productsService.getAllProductsFromCategory(categoryId, sort);
         logger.info(products.toString());
 
         return products;
