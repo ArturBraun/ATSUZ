@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mysql://online-store-db.mysql.database.azure.com:3306/online_store_db?useSSL=true
     username: a01133518
-    password: ENC(M9JYxT9ZPvCs4bSdSEtFVrYtugGPRauE/IL+hHbtnCA=)
+    password: ENC(OZGe8k8+WP0iotU0yVkDuW6sxEE/I57ukAhbR0gCtDk=)
     initialization-mode: always
   jpa:
     show-sql: true
