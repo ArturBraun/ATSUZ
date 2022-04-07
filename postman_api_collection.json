@@ -65,7 +65,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/get-all-categories",
+					"raw": "http://localhost:8080/api/v1/categories",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -74,7 +74,7 @@
 					"path": [
 						"api",
 						"v1",
-						"get-all-categories"
+						"categories"
 					]
 				}
 			},
@@ -113,7 +113,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/products-by-category?categoryId=4&sort=deliveryWaitingTime,desc",
+					"raw": "http://localhost:8080/api/v1/products-by-category?categoryId=1&sort=deliveryWaitingTime,desc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,7 +127,7 @@
 					"query": [
 						{
 							"key": "categoryId",
-							"value": "4"
+							"value": "1"
 						},
 						{
 							"key": "sort",

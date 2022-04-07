@@ -9,7 +9,7 @@ const Header = () => {
 
     useEffect( () => {    
       const fetchData = async () => {    
-        const dataFromServer = await sendGetRequest('api/v1/get-all-categories')
+        const dataFromServer = await sendGetRequest('api/v1/categories')
         setCategories(dataFromServer)
       }
       fetchData()

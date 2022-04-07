@@ -21,9 +21,4 @@ public class CategoriesService {
         return categoryRepository.findAll();
     }
 
-    public List<Product> getAllProductsFromCategory(Long categoryId){
-        Category category = categoryRepository.findById(categoryId).get();
-        return category.getProducts();
-    }
-
 }

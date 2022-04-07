@@ -32,15 +32,15 @@ public class ApiController {
         this.productsService = productsService;
     }
 
-    @GetMapping("/v1/get-message")
+    @GetMapping("/v1/message")
     public SimpleMessage getStrMessage(){
-        logger.info("GET request to /get-message");
+        logger.info("GET request to /message");
         return new SimpleMessage("Hello World Azure App!");
     }
 
-    @GetMapping("/v1/get-all-categories")
+    @GetMapping("/v1/categories")
     public List<Category> getAllCatgories(){
-        logger.info("GET request to /get-all-categories");
+        logger.info("GET request to /categories");
         List<Category> allCategories = categoriesService.getAllCategories();
         logger.info(allCategories.toString());
 

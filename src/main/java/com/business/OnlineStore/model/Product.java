@@ -1,6 +1,6 @@
 package com.business.OnlineStore.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -31,9 +31,9 @@ public class Product {
     @Column(name = "Product_Image_Id")
     private Long imageId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "Product_Category_Id")
-    @JsonBackReference
+    @JsonIgnore
     private Category category;
 
     public Product() {

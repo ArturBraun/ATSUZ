@@ -1,8 +1,6 @@
 package com.business.OnlineStore.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,10 +13,6 @@ public class Category {
 
     @Column(name = "Category_Name")
     private String name;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-    @JsonManagedReference
-    private List<Product> products;
 
     public Category() {
     }
@@ -37,14 +31,6 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     @Override

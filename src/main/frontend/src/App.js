@@ -14,7 +14,7 @@ function App() {
 
   useEffect( () => {    
     const fetchData = async () => {    
-      const dataFromServer = await sendGetRequest('api/v1/get-message')
+      const dataFromServer = await sendGetRequest('api/v1/message')
       setData(dataFromServer)
     }
     fetchData()
