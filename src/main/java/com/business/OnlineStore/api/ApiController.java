@@ -1,13 +1,9 @@
 package com.business.OnlineStore.api;
 
-import com.business.OnlineStore.model.Category;
-import com.business.OnlineStore.model.Image;
-import com.business.OnlineStore.model.Product;
-import com.business.OnlineStore.model.SimpleMessage;
+import com.business.OnlineStore.model.*;
 import com.business.OnlineStore.servicies.CategoriesService;
 import com.business.OnlineStore.servicies.ImagesService;
 import com.business.OnlineStore.servicies.ProductsService;
-import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
@@ -103,6 +99,15 @@ public class ApiController {
     public List<Product> getHitsOfTheDay(){
         logger.info("Returning top 2 hits of the day");
         List<Product> products = this.productsService.getTop2HitsOfTheDay();
+        logger.info(products.toString());
+
+        return products;
+    }
+
+    @GetMapping("/v1/search")
+    public List<Product> getSearchResults(@RequestBody SearchMessage searchMessage){
+        logger.info("/v1/search - Returning search results for " + searchMessage.toString());
+        List<Product> products = this.productsService.getAllProductsThatMatchesSearchText(searchMessage);
         logger.info(products.toString());
 
         return products;

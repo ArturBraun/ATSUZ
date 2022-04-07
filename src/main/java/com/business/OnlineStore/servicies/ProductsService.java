@@ -2,6 +2,7 @@ package com.business.OnlineStore.servicies;
 
 import com.business.OnlineStore.model.Category;
 import com.business.OnlineStore.model.Product;
+import com.business.OnlineStore.model.SearchMessage;
 import com.business.OnlineStore.repositories.FeaturedProductRepository;
 import com.business.OnlineStore.repositories.HitOfTheDayRepository;
 import com.business.OnlineStore.repositories.ProductRepository;
@@ -40,5 +41,9 @@ public class ProductsService {
 
     public List<Product> getAllProductsFromCategory(Long categoryId, Sort sort){
         return this.productRepository.findByCategoryId(categoryId, sort);
+    }
+
+    public List<Product> getAllProductsThatMatchesSearchText(SearchMessage searchMessage){
+        return this.productRepository.getSearchResults(searchMessage.getSearchText());
     }
 }
