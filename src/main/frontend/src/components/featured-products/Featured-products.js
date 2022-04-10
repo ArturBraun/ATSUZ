@@ -24,8 +24,8 @@ const FeaturedProducts = () => {
                         {
                             featuredProductsIds.length > 0 ? (
                                 featuredProductsIds.map(product => (
-                                    <div className="col">
-                                        <Product id={product.id} productData={product} />
+                                    <div className="col" key={product.id}>
+                                        <Product key={product.id} id={product.id} productData={product} />
                                     </div>
                                 ))  
                             ) : (<> </>)

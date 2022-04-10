@@ -39,7 +39,7 @@ const Header = () => {
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                         {categories.length > 0 ? (
                                 categories.map(category => (
-                                    <li><a className="dropdown-item" href={`/categoryId=${category.id}`}> {category.name} </a></li>
+                                    <li key={category.id}><a className="dropdown-item" href={`/categoryId=${category.id}`}> {category.name} </a></li>
                                 ))
                             ) : ('Brak kategorii do pokazania')
                         }
