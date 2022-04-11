@@ -15,10 +15,10 @@ const FeaturedProducts = () => {
     }, [])
 
     return (
-        <div className="card">
-            <h5 className="card-header">Polecane produkty</h5>
+        <div className="card featured-product border-3">
+            <h5 className="d-flex justify-content-center header-text">Polecane produkty</h5>
             <div className="card-body">
-                <div className="container-fluid bg-trasparent p-3" >
+                <div className="container bg-trasparent p-3" >
                     <div className="row row-cols-3 gx-5">
 
                         {

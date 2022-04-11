@@ -1,0 +1,18 @@
+
+.featured-product{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    border-radius: 30px;
+    border-color: grey;
+}
+
+.header-text{
+    width: 190px;
+    margin-top: -10px;
+    margin-left: 40px;
+    background: white;
+}
+

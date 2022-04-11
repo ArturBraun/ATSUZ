@@ -23,7 +23,7 @@ const Product = (props) => {
       }, [props])
 
     return (
-        <div className="card product-card"> 
+        <div className="card product-card center-element-content"> 
             <a href={`/productId=${props.id}`}>
                 <Image imageLink={productData.imageId ? `/api/v1/image?id=${productData.imageId}` : loading} altText={`Zdjecie produktu ${productData.name}`} />
             </a>
