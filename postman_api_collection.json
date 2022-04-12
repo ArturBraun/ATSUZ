@@ -6,6 +6,96 @@
 	},
 	"item": [
 		{
+			"name": "CreateOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jan\",\r\n    \"surname\": \"Kowalski\",\r\n    \"address\": \"Centralna 155\",\r\n    \"postcode\": \"02-875\",\r\n    \"city\": \"Warszawa\",\r\n    \"email\": \"jan.kowalski@gmail.com\",\r\n    \"phoneNumber\": \"555444333\",\r\n    \"paymentMethod\": \"PAYMENT_BY_CASH\",\r\n    \"productOrders\": [\r\n        {\r\n            \"productId\": 4,\r\n            \"amount\": 2\r\n        },\r\n        {\r\n            \"productId\": 3,\r\n            \"amount\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/order?orderId=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"order"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateImage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/artur/Desktop/studia_OKNO/architekturyTechnologieSystemowInternetowych/projekt/images/img11_OnePlus-8-Pro.jpg"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/update-image?id=11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"update-image"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "PostImage",
 			"request": {
 				"method": "POST",
@@ -132,39 +222,6 @@
 						{
 							"key": "sort",
 							"value": "deliveryWaitingTime,desc"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateImage",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "file",
-					"file": {
-						"src": "/C:/Users/artur/Desktop/studia_OKNO/architekturyTechnologieSystemowInternetowych/projekt/images/img11_OnePlus-8-Pro.jpg"
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/update-image?id=11",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"update-image"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "11"
 						}
 					]
 				}

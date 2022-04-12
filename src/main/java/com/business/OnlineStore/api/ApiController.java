@@ -3,13 +3,13 @@ package com.business.OnlineStore.api;
 import com.business.OnlineStore.model.*;
 import com.business.OnlineStore.servicies.CategoriesService;
 import com.business.OnlineStore.servicies.ImagesService;
+import com.business.OnlineStore.servicies.OrdersService;
 import com.business.OnlineStore.servicies.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -20,12 +20,14 @@ public class ApiController {
     private CategoriesService categoriesService;
     private ImagesService imagesService;
     private ProductsService productsService;
+    private OrdersService ordersService;
 
     @Autowired
-    public ApiController(CategoriesService categoriesService, ImagesService imagesService, ProductsService productsService) {
+    public ApiController(CategoriesService categoriesService, ImagesService imagesService, ProductsService productsService, OrdersService ordersService) {
         this.categoriesService = categoriesService;
         this.imagesService = imagesService;
         this.productsService = productsService;
+        this.ordersService = ordersService;
     }
 
     @GetMapping("/v1/message")
@@ -113,4 +115,21 @@ public class ApiController {
         return products;
     }
 
+    @PostMapping("/v1/order")
+    public ResponseEntity<Order> createOrder(@RequestBody Order order){
+        logger.info("Creating new order - " + order.toString());
+        order = this.ordersService.createOrder(order);
+        logger.info("New order created - " + order.toString());
+
+        return ResponseEntity.ok(order);
+    }
+
+    @GetMapping("/v1/order")
+    public ResponseEntity<Order> getOrderByCategoryId(@RequestParam Long orderId){
+        logger.info(String.format("Returning order details of orderId = %d", orderId));
+        Order order = ordersService.getOrderById(orderId);
+        logger.info(order.toString());
+
+        return ResponseEntity.ok(order);
+    }
 }
