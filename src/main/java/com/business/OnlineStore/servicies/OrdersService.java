@@ -1,6 +1,9 @@
 package com.business.OnlineStore.servicies;
 
+import com.business.OnlineStore.common.ValidationException;
+import com.business.OnlineStore.common.Validator;
 import com.business.OnlineStore.model.Order;
+import com.business.OnlineStore.model.OrderIdentification;
 import com.business.OnlineStore.model.ProductOrder;
 import com.business.OnlineStore.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +35,14 @@ public class OrdersService {
         return order;
     }
 
-    public Order getOrderById(Long orderId){
-        Order order = orderRepository.findById(orderId).get();
+    public Order getOrderDetails(OrderIdentification orderIdentification) throws ValidationException {
+        Validator.isValidOrderId(orderIdentification.getOrderId());
+        Validator.isValidEmail(orderIdentification.getEmail());
+
+        Long orderId = Long.parseLong(orderIdentification.getOrderId());
+        Order order = orderRepository.findByIdAndEmail(orderId, orderIdentification.getEmail());
+        if(order == null) return null;
+
         List<ProductOrder> productOrders = productOrderRepository.findByOrderId(orderId);
         order.setProductOrders(productOrders);
 

@@ -1,5 +1,6 @@
 package com.business.OnlineStore.api;
 
+import com.business.OnlineStore.common.ValidationException;
 import com.business.OnlineStore.model.*;
 import com.business.OnlineStore.servicies.CategoriesService;
 import com.business.OnlineStore.servicies.ImagesService;
@@ -7,6 +8,7 @@ import com.business.OnlineStore.servicies.OrdersService;
 import com.business.OnlineStore.servicies.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -125,11 +127,23 @@ public class ApiController {
     }
 
     @GetMapping("/v1/order")
-    public ResponseEntity<Order> getOrderByCategoryId(@RequestParam Long orderId){
-        logger.info(String.format("Returning order details of orderId = %d", orderId));
-        Order order = ordersService.getOrderById(orderId);
-        logger.info(order.toString());
+    public ResponseEntity getOrderByCategoryId(@RequestBody OrderIdentification orderIdentification){
+        try{
+            logger.info("Returning order details of order = " + orderIdentification.toString());
+            Order order = ordersService.getOrderDetails(orderIdentification);
 
-        return ResponseEntity.ok(order);
+            if(order == null) {
+                String errorMessage = String.format("Dla %s nie istnieje zamowienie o numerze %s!", orderIdentification.getEmail(), orderIdentification.getOrderId());
+                logger.info(errorMessage);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+            }
+
+            logger.info(order.toString());
+            return ResponseEntity.ok(order);
+        }
+        catch(ValidationException exception){
+            logger.info(exception.getMessage());
+            return ResponseEntity.unprocessableEntity().body(exception.getMessage());
+        }
     }
 }
