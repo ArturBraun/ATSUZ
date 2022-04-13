@@ -12,6 +12,7 @@ import LayoutWrapper from './components/layout-wrapper/Layout-wrapper';
 import MainPage from './components/main-page/Main-page';
 import Category from './components/category/Category';
 import PageNotFound from './components/page-not-found/Page-not-found';
+import OrderSearch from './components/order-search/Order-search';
 
 function App() {
 
@@ -25,6 +26,10 @@ function App() {
         />
         <Route path="/category/:categoryId" element={
           <LayoutWrapper children={<Category />} />
+          } 
+        />
+        <Route path="/order-search" element={
+          <LayoutWrapper children={<OrderSearch />} />
           } 
         />
         
