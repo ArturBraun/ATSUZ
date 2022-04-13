@@ -21,7 +21,16 @@ public class OrdersService {
         this.productOrderRepository = productOrderRepository;
     }
 
-    public Order createOrder(Order order){
+    public Order createOrder(Order order) throws ValidationException{
+        Validator.isValidName(order.getName());
+        Validator.isValidSurname(order.getSurname());
+        Validator.isValidAddress(order.getAddress());
+        Validator.isValidPostCode(order.getPostcode());
+        Validator.isValidCity(order.getCity());
+        Validator.isValidEmail(order.getEmail());
+        Validator.isValidPhoneNumber(order.getPhoneNumber());
+        Validator.isValidPaymentMethod(order.getPaymentMethod());
+
         orderRepository.saveAndFlush(order);
         Long orderId = order.getId();
         List<ProductOrder> productOrders = order.getProductOrders();

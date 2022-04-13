@@ -118,12 +118,18 @@ public class ApiController {
     }
 
     @PostMapping("/v1/order")
-    public ResponseEntity<Order> createOrder(@RequestBody Order order){
-        logger.info("Creating new order - " + order.toString());
-        order = this.ordersService.createOrder(order);
-        logger.info("New order created - " + order.toString());
+    public ResponseEntity createOrder(@RequestBody Order order){
+        try{
+            logger.info("Creating new order - " + order.toString());
+            order = this.ordersService.createOrder(order);
+            logger.info("New order created - " + order.toString());
 
-        return ResponseEntity.ok(order);
+            return ResponseEntity.ok(order);
+        }
+        catch (ValidationException exception){
+            logger.info(exception.getMessage());
+            return ResponseEntity.unprocessableEntity().body(exception.getMessage());
+        }
     }
 
     @GetMapping("/v1/order")
@@ -133,7 +139,7 @@ public class ApiController {
             Order order = ordersService.getOrderDetails(orderIdentification);
 
             if(order == null) {
-                String errorMessage = String.format("Dla %s nie istnieje zamowienie o numerze %s!", orderIdentification.getEmail(), orderIdentification.getOrderId());
+                String errorMessage = String.format("Dla %s nie istnieje zamówienie o numerze %s!", orderIdentification.getEmail(), orderIdentification.getOrderId());
                 logger.info(errorMessage);
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
             }
