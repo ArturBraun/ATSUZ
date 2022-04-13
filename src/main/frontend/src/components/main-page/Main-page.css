@@ -1,13 +1,19 @@
-.App {
-    text-align: center;
-}
-  
+
 .App-header {
   background-image: url("../../../public/main-page-background.jpg");
   background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-text {
+  color: white;
+  text-align: center;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 .description {
-  color: black;
+  padding-bottom: 25px;
 }
   

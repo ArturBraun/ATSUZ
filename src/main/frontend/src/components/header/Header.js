@@ -18,6 +18,7 @@ const Header = () => {
     console.log(JSON.stringify(categories))
 
     return (
+        // navbar -> fixed-top
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
             <a className="navbar-brand" href="/">
@@ -44,6 +45,9 @@ const Header = () => {
                             ) : ('Brak kategorii do pokazania')
                         }
                     </ul>
+                </li>
+                <li className="nav-item">
+                    <a className="nav-link active" aria-current="page" href="/order-search">Zamówienia</a>
                 </li>
             </ul>
             <form className="d-flex">
