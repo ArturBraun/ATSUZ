@@ -37,7 +37,7 @@ public class Validator {
     }
 
     public static boolean isValidCity(String city) throws ValidationException{
-        String regex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$";
+        String regex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+$";
 
         if(!(city.matches(regex) && city.length() <= 100)) throw new ValidationException("Miasto jest niepoprawne!");
         return true;
@@ -56,7 +56,7 @@ public class Validator {
     }
 
     public static boolean isValidSurname(String surname) throws ValidationException{
-        String regex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+$";
+        String regex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\-]+$";
 
         if(!(surname.matches(regex) && surname.length() <= 50)) throw new ValidationException("Nazwisko jest niepoprawne!");
         return true;

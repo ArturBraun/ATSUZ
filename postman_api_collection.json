@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Jan\",\r\n    \"surname\": \"Kowalski\",\r\n    \"address\": \"Centralna 155\",\r\n    \"postcode\": \"02-875\",\r\n    \"city\": \"Warszawa\",\r\n    \"email\": \"jan.kowalski@gmail.com\",\r\n    \"phoneNumber\": \"555444333\",\r\n    \"paymentMethod\": \"PAYMENT_BY_CASH\",\r\n    \"productOrders\": [\r\n        {\r\n            \"productId\": 4,\r\n            \"amount\": 2\r\n        },\r\n        {\r\n            \"productId\": 3,\r\n            \"amount\": 1\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"Amelia\",\r\n    \"surname\": \"Ochocińska-Mańka\",\r\n    \"address\": \"Centralna 15\",\r\n    \"postcode\": \"02-875\",\r\n    \"city\": \"Nowy Dwór Mazowiecki\",\r\n    \"email\": \"ao@gmail.com\",\r\n    \"phoneNumber\": \"555444333\",\r\n    \"paymentMethod\": \"PAYMENT_BY_CASH\",\r\n    \"productOrders\": [\r\n        {\r\n            \"productId\": 4,\r\n            \"amount\": 2\r\n        },\r\n        {\r\n            \"productId\": 3,\r\n            \"amount\": 1\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"jan.kowalski@gmail.com\",\r\n    \"orderId\": \"8\"\r\n}",
+					"raw": "{\r\n    \"email\": \"ao@gmail.com\",\r\n    \"orderId\": \"19\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
