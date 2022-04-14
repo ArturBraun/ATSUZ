@@ -5,7 +5,7 @@ import { sendGetRequest } from '../../services/ApiCall'
 import './Header.css'
 
 const Header = () => {
-    const [categories, setCategories] = useState({})
+    const [categories, setCategories] = useState('')
 
     useEffect( () => {    
       const fetchData = async () => {    
@@ -51,7 +51,7 @@ const Header = () => {
                 </li>
             </ul>
             <form className="d-flex">
-                <input className="form-control me-2" type="search" placeholder="Szukaj" aria-label="Search" />
+                <input className="form-boarder form-control me-2" type="search" placeholder="Szukaj" aria-label="Search" />
                 <button className="btn btn-outline-success search-btn" type="submit">Szukaj</button>
                 <a className="navbar-brand shopping-cart" href="/">
                     <img src={shoppingCart} alt="Logo koszyka link" width="30" height="24" className="d-inline-block align-text-top" />

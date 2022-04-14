@@ -132,7 +132,7 @@ public class ApiController {
         }
     }
 
-    @GetMapping("/v1/order")
+    @PostMapping("/v1/order-details")
     public ResponseEntity getOrderByCategoryId(@RequestBody OrderIdentification orderIdentification){
         try{
             logger.info("Returning order details of order = " + orderIdentification.toString());

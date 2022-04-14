@@ -1,11 +1,21 @@
 
 export async function sendGetRequest(urlEnding = '') {
 
+    console.log("GET %s", urlEnding)
     const response = await fetch(urlEnding)
-    const jsonReponse = await response.json()
-    console.log('GET %s => %s', urlEnding, JSON.stringify(jsonReponse))
+      .then(response => {
+        if(!response.ok){
+          checkError(response)
+          return;
+        }
+        else{
+          const jsonReponse = response.json()    
+          jsonReponse.then(text => console.log('GET %s => %s', urlEnding, JSON.stringify(text)))
+          return jsonReponse;
+        }
+      }); 
 
-    return jsonReponse;
+    return response
 }
 
 export async function sendPostRequest(urlEnding = '', data = {}) {
@@ -18,11 +28,28 @@ export async function sendPostRequest(urlEnding = '', data = {}) {
         },
         redirect: 'follow', 
         body: JSON.stringify(data) 
-      });
-    const jsonReponse = await response.json()
+      })
+      .then(response => {
+        if(!response.ok){
+          checkError(response)
+          return;
+        }
+        else{
+          const jsonReponse = response.json()    
+          jsonReponse.then(text => console.log('POST %s => %s', urlEnding, JSON.stringify(text)))
+          return jsonReponse;
+        }
+      }); 
 
-    console.log('POST %s => %s', urlEnding, JSON.stringify(jsonReponse))
+    return response
+}
 
-    return jsonReponse;
+function checkError(response){
+  if(response.status === 500) showAlert('Ups, niespodziewany błąd. Prosimy spróbować ponownie.')
+  else if(response.status === 404 || response.status === 422) response.text().then(text => showAlert(text))
+}
+
+function showAlert(message = ''){
+  alert(message);
 }
 
