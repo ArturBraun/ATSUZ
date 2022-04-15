@@ -1,8 +1,9 @@
+import { getOrigin } from '../common/Common-functions'
 
 export async function sendGetRequest(urlEnding = '') {
 
     console.log("GET %s", urlEnding)
-    const response = await fetch(urlEnding)
+    const response = await fetch(`${getOrigin()}/${urlEnding}`)
       .then(response => {
         if(!response.ok){
           checkError(response)
@@ -21,7 +22,7 @@ export async function sendGetRequest(urlEnding = '') {
 export async function sendPostRequest(urlEnding = '', data = {}) {
 
     console.log("POST %s + %s", urlEnding, JSON.stringify(data))
-    const response = await fetch(urlEnding, {
+    const response = await fetch(`${getOrigin()}/${urlEnding}`, {
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json'

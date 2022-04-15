@@ -5,7 +5,7 @@ import loading from '../icons/loading.svg'
 import './Product.css'
 
 const Product = (props) => {
-    const [productData, setProductData] = useState({})
+    const [productData, setProductData] = useState('')
 
     useEffect( () => {    
         const fetchData = async () => {    
@@ -24,12 +24,12 @@ const Product = (props) => {
 
     return (
         <div className="card product-card center-element-content"> 
-            <a href={`/productId=${props.id}`}>
+            <a href={`/product/${props.id}`}>
                 <Image imageLink={productData.imageId ? `/api/v1/image?id=${productData.imageId}` : loading} altText={`Zdjecie produktu ${productData.name}`} />
             </a>
             
             <div className="card-body">
-                <a className="card-title product-link" href={`/productId=${props.id}`}>
+                <a className="card-title product-link" href={`/product/${props.id}`}>
                     <h5>{productData.name}</h5>
                 </a>
                 
