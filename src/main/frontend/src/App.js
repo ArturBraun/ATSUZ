@@ -14,6 +14,7 @@ import Category from './components/category/Category';
 import PageNotFound from './components/page-not-found/Page-not-found';
 import OrderSearch from './components/order-search/Order-search';
 import ProductDetails from './components/product-details/Product-details';
+import ShoppingCart from './components/shopping-cart/Shopping-cart';
 
 function App() {
 
@@ -35,6 +36,10 @@ function App() {
         />
         <Route path="/product/:productId" element={
           <LayoutWrapper children={<ProductDetails />} />
+          } 
+        />
+        <Route path="/cart" element={
+          <LayoutWrapper children={<ShoppingCart />} />
           } 
         />
         
