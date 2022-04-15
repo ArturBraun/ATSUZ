@@ -1,0 +1,4 @@
+.product-link, .product-link:visited, .product-link:hover, .product-link:active {
+    text-decoration: none;
+    color: black;
+}

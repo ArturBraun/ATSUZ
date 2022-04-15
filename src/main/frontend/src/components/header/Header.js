@@ -15,8 +15,6 @@ const Header = () => {
       fetchData()
     }, [])
 
-    console.log(JSON.stringify(categories))
-
     return (
         // navbar -> fixed-top
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
