@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @RestController
@@ -30,12 +31,6 @@ public class ApiController {
         this.imagesService = imagesService;
         this.productsService = productsService;
         this.ordersService = ordersService;
-    }
-
-    @GetMapping("/v1/message")
-    public SimpleMessage getStrMessage(){
-        logger.info("GET request to /message");
-        return new SimpleMessage("Hello World Azure App!");
     }
 
     @GetMapping("/v1/categories")
@@ -73,12 +68,28 @@ public class ApiController {
     }
 
     @GetMapping("/v1/product")
-    public Product getProductById(@RequestParam Long id){
+    public ResponseEntity getProductById(@RequestParam Long id){
         logger.info(String.format("Returning product of id = %d", id));
         Product product = this.productsService.getProductById(id).get();
         logger.info(product.toString());
 
-        return product;
+        return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/v1/category")
+    public ResponseEntity getCategoryById(@RequestParam Long id){
+        logger.info(String.format("Returning category of id = %d", id));
+        Optional<Category> categoryOptional = categoriesService.getCategoryById(id);
+
+        if(categoryOptional.isPresent()){
+            Category category = categoryOptional.get();
+            logger.info(category.toString());
+            return ResponseEntity.ok(category);
+        }
+        else {
+            logger.info(String.format("Category of id = %d not found", id));
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/v1/products-by-category")

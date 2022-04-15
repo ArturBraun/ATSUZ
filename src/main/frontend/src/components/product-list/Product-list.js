@@ -11,14 +11,14 @@ const ProductList = (props) => {
     }
 
     return (
-        <div className="container mt-5 mb-5">
+        <div className="container mt-2 mb-5">
             <div className="d-flex justify-content-center row">
                 <div className="col-md-10">
 
                     {props.data.length > 0 ? (
                             props.data.map(product => (
 
-                                <div className="row mt-2 mb-2 p-2 bg-light border rounded" key={product.id}>
+                                <div className="row mt-1 mb-2 p-2 bg-light border rounded" key={product.id}>
                                     <a className="col-md-3 mt-1" href={`/product/${product.id}`}>
                                         <Image imageLink={product.imageId ? `/api/v1/image?id=${product.imageId}` : loading} 
                                             altText={`Zdjecie produktu ${product.name}`} />
