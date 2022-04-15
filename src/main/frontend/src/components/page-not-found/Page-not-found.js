@@ -3,7 +3,7 @@ import React from 'react';
 const PageNotFound = (props) => {
   return (
     <div>
-        <p>Blad! Nie znaleziono strony o podanym adresie!</p>
+        <p>Ups, wyszukiwana strona nie została odnaleziona lub nastąpił nieoczekiwany błąd.</p>
     </div>
   )
 };

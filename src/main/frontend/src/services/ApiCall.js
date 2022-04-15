@@ -46,7 +46,10 @@ export async function sendPostRequest(urlEnding = '', data = {}) {
 }
 
 function checkError(response){
-  if(response.status === 500) showAlert('Ups, niespodziewany błąd. Prosimy spróbować ponownie.')
+  if(response.status === 500) {
+    window.location.href = `${window.location.origin.toString()}/not-found`
+    //showAlert('Ups, niespodziewany błąd. Prosimy spróbować ponownie.')
+  }
   else if(response.status === 404 || response.status === 422) response.text().then(text => showAlert(text))
 }
 
