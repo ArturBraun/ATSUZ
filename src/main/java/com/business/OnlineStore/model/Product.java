@@ -36,6 +36,15 @@ public class Product {
     @JsonIgnore
     private Category category;
 
+    @Column(name = "Product_production_quality")
+    private String productionQuality;
+
+    @Column(name = "Product_appearance")
+    private String appearance;
+
+    @Column(name = "Product_reliability")
+    private String reliability;
+
     public Product() {
     }
 
@@ -103,6 +112,30 @@ public class Product {
         this.category = category;
     }
 
+    public String getProductionQuality() {
+        return productionQuality;
+    }
+
+    public void setProductionQuality(String productionQuality) {
+        this.productionQuality = productionQuality;
+    }
+
+    public String getAppearance() {
+        return appearance;
+    }
+
+    public void setAppearance(String appearance) {
+        this.appearance = appearance;
+    }
+
+    public String getReliability() {
+        return reliability;
+    }
+
+    public void setReliability(String reliability) {
+        this.reliability = reliability;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -113,6 +146,10 @@ public class Product {
                 ", categoryId=" + categoryId +
                 ", deliveryWaitingTime=" + deliveryWaitingTime +
                 ", imageId=" + imageId +
+                ", category=" + category +
+                ", productionQuality='" + productionQuality + '\'' +
+                ", appearance='" + appearance + '\'' +
+                ", reliability='" + reliability + '\'' +
                 '}';
     }
 
