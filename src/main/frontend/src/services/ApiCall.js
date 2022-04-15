@@ -1,4 +1,7 @@
-import { getOrigin } from '../common/Common-functions'
+import { 
+  getOrigin,
+  redirectToErrorPage
+ } from '../common/Common-functions'
 
 export async function sendGetRequest(urlEnding = '') {
 
@@ -47,7 +50,7 @@ export async function sendPostRequest(urlEnding = '', data = {}) {
 
 function checkError(response){
   if(response.status === 500) {
-    window.location.href = `${window.location.origin.toString()}/not-found`
+    redirectToErrorPage()
     //showAlert('Ups, niespodziewany błąd. Prosimy spróbować ponownie.')
   }
   else if(response.status === 404 || response.status === 422) response.text().then(text => showAlert(text))

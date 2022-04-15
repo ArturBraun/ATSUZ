@@ -8,10 +8,10 @@ const MainPage = (props) => {
         <div>
             <header className="App-header">
                 <div className="landing-text">
-                    <p class="fs-2">Witamy w naszym sklepie internetowym!</p>
-                    <p class="fs-5 description">Prosimy o zapoznanie się z naszą urozmaiconą ofertą, poprzez wybór odpowiedniej kategorii na górze strony lub poprzez wyszukanie interesującego produktu. Zachęcamy również do zapoznania się z poniżej polecanymi przez nas produktami!</p>
+                    <p className="fs-2">Witamy w naszym sklepie internetowym!</p>
+                    <p className="fs-5 description">Prosimy o zapoznanie się z naszą urozmaiconą ofertą, poprzez wybór odpowiedniej kategorii na górze strony lub poprzez wyszukanie interesującego produktu. Zachęcamy również do zapoznania się z poniżej polecanymi przez nas produktami!</p>
                 </div>
-                <a href="#featured-products" class="btn btn-success btn-lg" role="button">Polecane produkty</a>
+                <a href="#featured-products" className="btn btn-success btn-lg" role="button">Polecane produkty</a>
 
             </header>
             <div id="featured-products">

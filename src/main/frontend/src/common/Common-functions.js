@@ -42,3 +42,7 @@ export function getShoppingCartContent(){
     let cartContent = localStorage.getItem(CART_ITEM);
     return JSON.parse(cartContent)
 }
+
+export function redirectToErrorPage(){
+    window.location.href = `${window.location.origin.toString()}/not-found`
+}

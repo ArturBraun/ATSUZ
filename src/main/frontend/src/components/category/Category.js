@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ProductList from '../product-list/Product-list';
 import { useEffect, useState } from 'react';
 import { sendGetRequest } from '../../services/ApiCall'
+import { redirectToErrorPage } from '../../common/Common-functions'
 
 const Category = (props) => {
     const params = useParams();
@@ -13,6 +14,10 @@ const Category = (props) => {
       const fetchData = async () => {    
         const dataFromServer = await sendGetRequest(url)
         setProducts(dataFromServer)
+        
+        if(dataFromServer.length === 0){
+            redirectToErrorPage()
+        }
       }
       fetchData()
     }, [])
