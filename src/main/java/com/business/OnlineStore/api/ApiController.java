@@ -119,7 +119,7 @@ public class ApiController {
         return products;
     }
 
-    @GetMapping("/v1/search")
+    @PostMapping("/v1/search")
     public List<Product> getSearchResults(@RequestBody SearchMessage searchMessage){
         logger.info("/v1/search - Returning search results for " + searchMessage.toString());
         List<Product> products = this.productsService.getAllProductsThatMatchesSearchText(searchMessage);

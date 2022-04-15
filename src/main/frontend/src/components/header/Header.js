@@ -3,9 +3,11 @@ import shoppingCart from '../icons/shopping-cart.svg'
 import { useEffect, useState } from 'react';
 import { sendGetRequest } from '../../services/ApiCall'
 import './Header.css'
+import { getOrigin } from '../../common/Common-functions'
 
 const Header = () => {
     const [categories, setCategories] = useState('')
+    const [inputSearchQuery, setInputSearchQuery] = useState('')
 
     useEffect( () => {    
       const fetchData = async () => {    
@@ -14,6 +16,13 @@ const Header = () => {
       }
       fetchData()
     }, [])
+
+    const performSearch = () => {
+        if(inputSearchQuery){
+            let searchStr = inputSearchQuery.trim()
+            window.location.href = `${window.location.origin.toString()}/search/${searchStr}`
+        }        
+    }
 
     return (
         // navbar -> fixed-top
@@ -48,13 +57,14 @@ const Header = () => {
                     <a className="nav-link active" aria-current="page" href="/order-search">Zamówienia</a>
                 </li>
             </ul>
-            <form className="d-flex">
-                <input className="form-boarder form-control me-2" type="search" placeholder="Szukaj" aria-label="Search" />
-                <button className="btn btn-outline-success search-btn" type="submit">Szukaj</button>
+            <div className="d-flex">
+                <input className="form-boarder form-control me-2" type="search" placeholder="Szukaj" aria-label="Search" 
+                    onChange={e => setInputSearchQuery(e.target.value)}/>
+                <button className="btn btn-outline-success search-btn" type="submit" onClick={performSearch}>Szukaj</button>
                 <a className="navbar-brand shopping-cart" href="/cart">
                     <img src={shoppingCart} alt="Logo koszyka link" width="30" height="24" className="d-inline-block align-text-top" />
                 </a>
-            </form>
+            </div>
             </div>
         </div>
         </nav>

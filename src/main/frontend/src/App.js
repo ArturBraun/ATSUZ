@@ -15,6 +15,7 @@ import PageNotFound from './components/page-not-found/Page-not-found';
 import OrderSearch from './components/order-search/Order-search';
 import ProductDetails from './components/product-details/Product-details';
 import ShoppingCart from './components/shopping-cart/Shopping-cart';
+import SearchResults from './components/search-results/Search-results';
 
 function App() {
 
@@ -40,6 +41,10 @@ function App() {
         />
         <Route path="/cart" element={
           <LayoutWrapper children={<ShoppingCart />} />
+          } 
+        />
+        <Route path="/search/:searchQuery" element={
+          <LayoutWrapper children={<SearchResults />} />
           } 
         />
         
