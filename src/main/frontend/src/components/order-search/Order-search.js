@@ -2,6 +2,7 @@ import React from 'react';
 import './Order-search.css'
 import { sendPostRequest } from '../../services/ApiCall'
 import { useState } from 'react';
+import ShoppingCart from '../shopping-cart/Shopping-cart';
 
 const OrderSearch = (props) => {
   const [inputEmail, setInputEmail] = useState('')
@@ -12,7 +13,6 @@ const OrderSearch = (props) => {
     const orderDataRequest = {email: inputEmail, orderId: inputOrderId}  
     const dataFromServer = await sendPostRequest('api/v1/order-details', orderDataRequest)
     if(dataFromServer) {
-      console.log(JSON.stringify(dataFromServer))
       setOrderData(dataFromServer)
     }
   }
@@ -21,7 +21,7 @@ const OrderSearch = (props) => {
     <div>
       {
         orderData ? (
-          <div>{JSON.stringify(orderData)}</div>
+          <ShoppingCart isConst={true} orderDetails={orderData}/>
         ): (
           <div className="container mt-5 mb-5 text-center">
             <div className="d-flex justify-content-center row">

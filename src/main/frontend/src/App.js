@@ -40,7 +40,7 @@ function App() {
           } 
         />
         <Route path="/cart" element={
-          <LayoutWrapper children={<ShoppingCart />} />
+          <LayoutWrapper children={<ShoppingCart isConst={false}/>} />
           } 
         />
         <Route path="/search/:searchQuery" element={

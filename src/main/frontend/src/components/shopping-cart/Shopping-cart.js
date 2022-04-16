@@ -32,12 +32,70 @@ const ShoppingCart = (props) => {
     const [emailInput, setEmailInput] = useState('')
     const [phoneInput, setPhoneInput] = useState('')
 
+    const getOrderProductById = (productIdParam) => {
+        let idx = -1;
+        for(let i = 0; i < props.orderDetails.productOrders.length; i++){
+            if(props.orderDetails.productOrders[i].productId === productIdParam){
+                idx = i;
+                break;
+            }
+        }
+        if(idx < 0) return null;
+        return props.orderDetails.productOrders[idx];
+    }
+
+    const setOrderDetailsOnUi = () => {
+        let nameInputElem = document.getElementById('nameInputId')
+        let surnameInputElem = document.getElementById('surnameInputId')
+        let addressInputElem = document.getElementById('addressInputId')
+        let cityInputElem = document.getElementById('cityInputId')
+        let zipInputElem = document.getElementById('zipCodeInputId')
+        let phoneInputElem = document.getElementById('phoneInputId')
+        let emailInputElem = document.getElementById('emailInputId')
+        let cashRadioElem = document.getElementById('cashRadioButton')
+        let cardRadioElem = document.getElementById('cardRadioButton')
+
+        if(nameInputElem){
+            nameInputElem.value = props.orderDetails.name;            
+        } 
+        if(surnameInputElem){
+            surnameInputElem.value = props.orderDetails.surname;            
+        }  
+        if(addressInputElem){
+            addressInputElem.value = props.orderDetails.address;            
+        } 
+        if(cityInputElem){
+            cityInputElem.value = props.orderDetails.city;            
+        } 
+        if(zipInputElem){
+            zipInputElem.value = props.orderDetails.postcode;            
+        } 
+        if(phoneInputElem){
+            phoneInputElem.value = props.orderDetails.phoneNumber;            
+        } 
+        if(emailInputElem){
+            emailInputElem.value = props.orderDetails.email;            
+        }  
+        if(cashRadioElem && props.orderDetails.paymentMethod === 'PAYMENT_BY_CASH'){
+            cashRadioElem.checked = true;            
+        } 
+        if(cardRadioElem && props.orderDetails.paymentMethod === 'PAYMENT_BY_CARD'){
+            cardRadioElem.checked = true;            
+        }     
+        
+    }
+
     const calculateCartPrice = () => {
-        const cartContent = getShoppingCartContent();
         let sum = 0;
         products.map(product => {
-            const cartElem = getCartElementById(product.id);
-            if(cartElem) sum = sum + cartElem.amount * product.price;
+            let elem = null;
+            if(props.isConst && props.orderDetails){
+                elem = getOrderProductById(product.id);
+              }
+            else{
+                elem = getCartElementById(product.id);
+            }            
+            if(elem) sum = sum + elem.amount * product.price;
         })
         return sum;
     }
@@ -54,12 +112,23 @@ const ShoppingCart = (props) => {
 
     useEffect( () => {    
       const fetchData = async () => {
-        const cartContent = getShoppingCartContent()
-        if(cartContent){
-            const idsList = cartContent.map(element => element.productId).join(',')  
+        let productContent = null;
+
+        if(props.isConst && props.orderDetails){
+            productContent = props.orderDetails.productOrders;
+          }
+        else{
+            productContent = getShoppingCartContent();
+        }
+        
+        if(productContent){
+            const idsList = productContent.map(element => element.productId).join(',')  
             const dataFromServer = await sendGetRequest(`/api/v1/products?ids=${idsList}`)
             setProducts(dataFromServer)
-        }        
+        }   
+        if(props.isConst){
+            setOrderDetailsOnUi();
+        }     
       }
       fetchData()
     }, [cartEvent])
@@ -103,11 +172,15 @@ const ShoppingCart = (props) => {
                             <div className="form-inline d-flex justify-content-center">
                                 <h4 className="form-boarder form-control mb-3">
                                     {
-                                        products.length > 0 ? (
-                                            "Twój koszyk"
+                                        props.isConst ? (
+                                            `Twoje zamówienie o numerze ${props.orderDetails.id}`
                                         ) : (
-                                            "Twój koszyk jest pusty."
-                                        )
+                                            products.length > 0 ? (
+                                                "Twój koszyk"
+                                            ) : (
+                                                "Twój koszyk jest pusty."
+                                            )
+                                        )                                        
                                     }
                                 </h4>
                                 {
@@ -154,20 +227,31 @@ const ShoppingCart = (props) => {
                                                     <p className="text-muted">Ilość dni oczekiwania na dostawę: {product.deliveryWaitingTime}</p>
                                                     <p className="text-truncate">{product.description}</p>
                                                 </div>
-                                            </div>
+                                            </div>                                                
+
                                             <div className="align-items-center align-content-center col-md-3 border-left mt-1 text-center">
                                                 <h4 className="m-2">
-                                                    {getCartElementById(product.id) ? getCartElementById(product.id).amount : 0} x {product.price.toFixed(2)} zł
+                                                    {
+                                                        props.isConst ? (getOrderProductById(product.id).amount) : 
+                                                            (getCartElementById(product.id) ? getCartElementById(product.id).amount : 0)
+                                                        
+                                                    } x {product.price.toFixed(2)} zł
                                                 </h4>
-                                                <div className="d-flex flex-column mt-4">
-                                                    <button className="btn btn-success btn-sm" type="button" onClick={() => addToCart(product.id)}>
-                                                        Dodaj kolejny
-                                                    </button>
-                                                    <button className="btn btn-outline-success btn-sm mt-2" type="button" onClick={() => deleteFromCart(product.id)}>
-                                                        Usuń jeden
-                                                    </button>
-                                                </div>
+
+                                                {
+                                                props.isConst ? (<></>) : (
+                                                    <div className="d-flex flex-column mt-4">
+                                                        <button className="btn btn-success btn-sm" type="button" onClick={() => addToCart(product.id)}>
+                                                            Dodaj kolejny
+                                                        </button>
+                                                        <button className="btn btn-outline-success btn-sm mt-2" type="button" onClick={() => deleteFromCart(product.id)}>
+                                                            Usuń jeden
+                                                        </button>
+                                                    </div>
+                                                )
+                                                }                                                
                                             </div>
+
                                         </div>
                                     ))
                                 }                                            
@@ -196,14 +280,14 @@ const ShoppingCart = (props) => {
                                                     <div className="col-md-6 mb-4">
                                                         <div className="form-floating">
                                                             <input type="text" id="nameInputId" className="form-control form-boarder" placeholder="Imie" 
-                                                                onChange={e => setNameInput(e.target.value)}/>
+                                                                onChange={e => setNameInput(e.target.value)} disabled={props.isConst}/>
                                                             <label className="form-label" htmlFor="nameInputId">Imie</label>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6 mb-4">
                                                         <div className="form-floating">
                                                             <input type="text" id="surnameInputId" className="form-control form-boarder" placeholder="Nazwisko"
-                                                                onChange={e => setSurnameInput(e.target.value)}/>
+                                                                onChange={e => setSurnameInput(e.target.value)} disabled={props.isConst}/>
                                                             <label className="form-label" htmlFor="surnameInputId">Nazwisko</label>
                                                         </div>
                                                     </div>
@@ -213,29 +297,29 @@ const ShoppingCart = (props) => {
         
                                                 <div className="form-floating mb-4">
                                                     <input type="text" id="addressInputId" className="form-control form-boarder" placeholder="Adres"
-                                                        onChange={e => setAddressInput(e.target.value)}/>
+                                                        onChange={e => setAddressInput(e.target.value)} disabled={props.isConst}/>
                                                     <label className="form-label" htmlFor="addressInputId">Adres</label>
                                                 </div>
         
         
                                                 <div className="form-floating mb-4">
                                                     <input type="text" id="cityInputId" className="form-control form-boarder" placeholder="Miasto"
-                                                        onChange={e => setCityInput(e.target.value)}/>
+                                                        onChange={e => setCityInput(e.target.value)} disabled={props.isConst}/>
                                                     <label className="form-label" htmlFor="cityInputId">Miasto</label>
                                                 </div>
         
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-floating mb-4">
-                                                            <input type="text" id="zipCodeInput" className="form-control form-boarder" placeholder="00-000"
-                                                                onChange={e => setZipInput(e.target.value)}/>
-                                                            <label className="form-label" htmlFor="zipCodeInput">Kod pocztowy</label>
+                                                            <input type="text" id="zipCodeInputId" className="form-control form-boarder" placeholder="00-000"
+                                                                onChange={e => setZipInput(e.target.value)} disabled={props.isConst}/>
+                                                            <label className="form-label" htmlFor="zipCodeInputId">Kod pocztowy</label>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-floating">
                                                             <input type="text" id="phoneInputId" className="form-control form-boarder" placeholder="000000000"
-                                                                onChange={e => setPhoneInput(e.target.value)}/>
+                                                                onChange={e => setPhoneInput(e.target.value)} disabled={props.isConst}/>
                                                             <label className="form-label" htmlFor="phoneInputId">Numer telefonu</label>
                                                         </div>
                                                     </div>
@@ -243,30 +327,33 @@ const ShoppingCart = (props) => {
         
                                                 <div className="form-outline mb-4 btn-group" role="group">
                                                     <input type="radio" className="btn-check" name="btnradio" id="cashRadioButton" autoComplete="off" defaultChecked 
-                                                        onChange={e => setPaymentInput("PAYMENT_BY_CASH")}/>
+                                                        onChange={e => setPaymentInput("PAYMENT_BY_CASH")} disabled={props.isConst}/>
                                                     <label className="btn btn-outline-success" htmlFor="cashRadioButton">Płatność gotówką przy odbiorze</label>
         
                                                     <input type="radio" className="btn-check" name="btnradio" id="cardRadioButton" autoComplete="off"
-                                                        onChange={e => setPaymentInput("PAYMENT_BY_CARD")}/>
+                                                        onChange={e => setPaymentInput("PAYMENT_BY_CARD")} disabled={props.isConst}/>
                                                     <label className="btn btn-outline-success" htmlFor="cardRadioButton">Płatność kartą przy odbiorze</label>
                                                 </div>
         
                                                 <div className="form-floating">
                                                     <input type="text" id="emailInputId" className="form-control form-boarder" placeholder="przyklad@przyklad.com"
-                                                        onChange={e => setEmailInput(e.target.value)}/>
+                                                        onChange={e => setEmailInput(e.target.value)} disabled={props.isConst} />
                                                     <label className="form-label" htmlFor="emailInputId">Email</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-        
-        
-                                    <div className="d-flex justify-content-center mb-4">
-                                        <button type="button" className="btn btn-success btn-lg" onClick={placeOrder}>
-                                            Złóż zamówienie
-                                        </button>
-                                    </div>
-        
+
+                                    {
+                                        props.isConst ? (<></>) : (
+                                            <div className="d-flex justify-content-center mb-4">
+                                                <button type="button" className="btn btn-success btn-lg" onClick={placeOrder}>
+                                                    Złóż zamówienie
+                                                </button>
+                                            </div>
+                                        )
+                                    }
+
                                 </div>
                             </div>
                         </div>
