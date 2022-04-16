@@ -88,3 +88,9 @@ export function deleteFromShoppingCart(productIdParam){
 export function redirectToErrorPage(){
     window.location.href = `${window.location.origin.toString()}/not-found`
 }
+
+export function clearCart(){
+    const CART_ITEM = "SHOPPING_CART" 
+    const emptyArrStr = JSON.stringify([])
+    localStorage.setItem(CART_ITEM, emptyArrStr)
+}
