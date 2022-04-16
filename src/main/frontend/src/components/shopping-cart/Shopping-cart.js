@@ -269,8 +269,7 @@ const ShoppingCart = (props) => {
                                 <div className="card mt-4 shadow-3 bg-light">
                                     <div className="row g-0">
                                         <div className="col-xl-6 bg-image">
-                                            <img src="https://mdbcdn.b-cdn.net/img/Others/extended-example/delivery.webp" alt="Zdjęcie dostawcy doręczającego paczkę"
-                                                className="img-fluid" />
+                                            <Image imageLink="/api/v1/image?id=18" altText="Zdjęcie dostawcy doręczającego paczkę" className="img-fluid"/>
                                         </div>
                                         <div className="col-xl-6">
                                             <div className="card-body p-md-5 text-black">
