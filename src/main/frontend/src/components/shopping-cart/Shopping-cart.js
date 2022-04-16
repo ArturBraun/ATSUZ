@@ -55,7 +55,7 @@ const ShoppingCart = (props) => {
             <div className="container mt-5 mb-5 text-center">
                 <div className="d-flex justify-content-center row">
                     <div className="col-md-10 d-flex justify-content-center">
-                        <div className="col-10 ">
+                        <div className="col-10">
                             <div className="form-inline d-flex justify-content-center">
                                 <h4 className="form-boarder form-control mb-3">
                                     {
@@ -91,7 +91,7 @@ const ShoppingCart = (props) => {
             </div>
             {
                 products.length > 0 ? (
-                    <div className="container mt-2 mb-5">
+                    <div className="container mt-2 mb-2">
                         <div className="d-flex justify-content-center row">
                             <div className="col-md-10">
                                 {
@@ -132,6 +132,79 @@ const ShoppingCart = (props) => {
                     </div>
                 ) : (<></>)
             } 
+
+            <div className="container mb-4">
+                <div className="row d-flex justify-content-center align-items-center">
+                    <div className="col-md-10 d-flex justify-content-center">
+                        <div className="card mt-4 shadow-3 bg-light">
+                            <div className="row g-0">
+                                <div className="col-xl-6 bg-image">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Others/extended-example/delivery.webp" alt="Zdjęcie dostawcy doręczającego paczkę"
+                                        className="img-fluid" />
+                                </div>
+                                <div className="col-xl-6">
+                                    <div className="card-body p-md-5 text-black">
+                                        <h3 className="mb-4">Dane do dostawy:</h3>
+
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-floating">
+                                                    <input type="text" id="nameInputId" className="form-control form-boarder" placeholder="Imie"/>
+                                                    <label className="form-label" htmlFor="nameInputId">Imie</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-floating">
+                                                    <input type="text" id="surnameInputId" className="form-control form-boarder" placeholder="Nazwisko"/>
+                                                    <label className="form-label" htmlFor="surnameInputId">Nazwisko</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div className="form-floating mb-4">
+                                            <input type="text" id="addressInputId" className="form-control form-boarder" placeholder="Adres"/>
+                                            <label className="form-label" htmlFor="addressInputId">Adres</label>
+                                        </div>
+
+
+                                        <div className="form-floating mb-4">
+                                            <input type="text" id="cityInputId" className="form-control form-boarder" placeholder="Miasto"/>
+                                            <label className="form-label" htmlFor="cityInputId">Miasto</label>
+                                        </div>
+
+                                        <div className="form-floating mb-4">
+                                            <input type="text" id="zipCodeInput" className="form-control form-boarder" placeholder="00-000"/>
+                                            <label className="form-label" htmlFor="zipCodeInput">Kod pocztowy</label>
+                                        </div>
+
+                                        <div className="form-outline mb-4 btn-group" role="group">
+                                            <input type="radio" className="btn-check" name="btnradio" id="cashRadioButton" autoComplete="off"/>
+                                            <label className="btn btn-outline-success" htmlFor="cashRadioButton">Płatność gotówką przy odbiorze</label>
+
+                                            <input type="radio" className="btn-check" name="btnradio" id="cardRadioButton" autoComplete="off"/>
+                                            <label className="btn btn-outline-success" htmlFor="cardRadioButton">Płatność kartą przy odbiorze</label>
+                                        </div>
+
+                                        <div className="form-floating">
+                                            <input type="text" id="emailInputId" className="form-control form-boarder" placeholder="przyklad@przyklad.com"/>
+                                            <label className="form-label" htmlFor="emailInputId">Email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="d-flex justify-content-center mb-4">
+                                <button type="button" className="btn btn-success btn-lg delivery-radio-btn">Złóż zamówienie</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     )
 }
