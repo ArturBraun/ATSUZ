@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -74,6 +75,16 @@ public class ApiController {
         logger.info(product.toString());
 
         return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/v1/products")
+    public ResponseEntity getProductsByIds(@RequestParam(name = "ids") List<String> strIds){
+        logger.info(String.format("Returning products of ids = %s", strIds.toString()));
+        List<Integer> intIds = strIds.stream().map((id) -> Integer.parseInt(id)).collect(Collectors.toList());
+        List<Product> products = this.productsService.getProductsByIds(intIds);
+        logger.info(products.toString());
+
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/v1/category")

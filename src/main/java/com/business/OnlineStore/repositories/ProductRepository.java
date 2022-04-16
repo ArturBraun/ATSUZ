@@ -17,4 +17,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             nativeQuery = true
             )
     List<Product> getSearchResults(@Param("searchText") String searchText);
+
+    @Query(
+            value = "SELECT * FROM Products WHERE Product_Id in :ids",
+            nativeQuery = true
+    )
+    List<Product> getProductsByIds(@Param("ids") List<Integer> ids);
 }

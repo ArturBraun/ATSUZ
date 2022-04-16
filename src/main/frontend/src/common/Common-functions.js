@@ -43,6 +43,22 @@ export function getShoppingCartContent(){
     return JSON.parse(cartContent)
 }
 
+export function getCartElementById(productIdParam){
+    const CART_ITEM = "SHOPPING_CART"
+
+    const cartContent = localStorage.getItem(CART_ITEM);
+    let products = JSON.parse(cartContent) 
+    let idx = -1;
+    for(let i = 0; i < products.length; i++){
+        if(products[i].productId === productIdParam){
+            idx = i;
+            break;
+        }
+    }
+    if(idx < 0) return null;
+    return products[idx];
+}
+
 export function redirectToErrorPage(){
     window.location.href = `${window.location.origin.toString()}/not-found`
 }

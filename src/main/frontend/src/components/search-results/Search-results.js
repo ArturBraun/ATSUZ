@@ -38,7 +38,7 @@ const SearchResults = (props) => {
                                 {
                                     products.length > 0 ? (<></>) : (
                                         <a type="button" href={getOrigin()} 
-                                            class="form-boarder form-control mb-3 btn btn-success text-white"> 
+                                            className="form-boarder form-control mb-3 btn btn-success text-white"> 
                                             Powrót do strony głównej
                                         </a>  
                                     )

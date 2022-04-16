@@ -46,4 +46,8 @@ public class ProductsService {
     public List<Product> getAllProductsThatMatchesSearchText(SearchMessage searchMessage){
         return this.productRepository.getSearchResults(searchMessage.getSearchText());
     }
+
+    public List<Product> getProductsByIds(List<Integer> ids){
+        return this.productRepository.getProductsByIds(ids);
+    }
 }
