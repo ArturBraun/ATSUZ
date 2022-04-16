@@ -14,8 +14,7 @@ import {
 import Image from '../image/Image';
 import loading from '../icons/loading.svg'
 import PlacedOrderModal from '../placed-order-modal/Placed-order-modal';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Modal } from 'bootstrap'
 
 const ShoppingCart = (props) => {
     const params = useParams();
@@ -87,6 +86,8 @@ const ShoppingCart = (props) => {
                     console.log(`Zamowienie o id = ${dataFromServer.id} zostalo zlozone`)
                     setProducts([])
                     setOrderId(dataFromServer.id)
+                    const orderCompleteModal = new Modal(document.getElementById('orderPlacedModal'));
+                    orderCompleteModal.show();
                 }                
             }          
         }
