@@ -11,7 +11,10 @@ const ProductDetails = (props) => {
     const [productData, setProductData] = useState('')
     const params = useParams();
     const addToCart = () => {
-        addToShoppingCart(params.productId)
+        const productIdInt = parseInt(params.productId);
+        if(Number.isInteger(productIdInt)){
+            addToShoppingCart(productIdInt);
+        }        
     } 
 
     useEffect( () => {    
