@@ -20,7 +20,7 @@ const ProductList = (props) => {
 
                                 <div className="row mt-1 mb-2 p-2 bg-light border rounded" key={product.id}>
                                     <a className="col-md-3 mt-1" href={`/product/${product.id}`}>
-                                        <Image imageLink={product.imageId ? `/api/v1/image?id=${product.imageId}` : loading} 
+                                        <Image imageLink={product.imageId ? `api/v1/image?id=${product.imageId}` : loading} 
                                             altText={`Zdjecie produktu ${product.name}`} />
                                     </a>
                                     <div className="align-items-center align-content-center col-md-6 mt-2 ">

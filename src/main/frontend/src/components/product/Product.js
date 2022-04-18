@@ -4,7 +4,8 @@ import { sendGetRequest } from '../../services/ApiCall'
 import loading from '../icons/loading.svg'
 import './Product.css'
 import { 
-    addToShoppingCart, 
+    addToShoppingCart,
+
 } from '../../common/Common-functions'
 import QuickMessage from '../quick-message/Quick-message';
 
@@ -17,7 +18,7 @@ const Product = (props) => {
 
     useEffect( () => {    
         const fetchData = async () => {    
-          const dataFromServer = await sendGetRequest(`/api/v1/product?id=${props.id}`)
+          const dataFromServer = await sendGetRequest(`api/v1/product?id=${props.id}`)
           setProductData(dataFromServer)
         }
 
@@ -34,7 +35,7 @@ const Product = (props) => {
         <>
             <div className="card product-card center-element-content"> 
                 <a href={`/product/${props.id}`}>
-                    <Image imageLink={productData.imageId ? `/api/v1/image?id=${productData.imageId}` : loading} altText={`Zdjecie produktu ${productData.name}`} />
+                    <Image imageLink={productData.imageId ? `api/v1/image?id=${productData.imageId}` : loading} altText={`Zdjecie produktu ${productData.name}`} />
                 </a>
                 
                 <div className="card-body">

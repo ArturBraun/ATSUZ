@@ -16,7 +16,7 @@ const ProductDetails = (props) => {
 
     useEffect( () => {    
         const fetchData = async () => {    
-          const dataFromServer = await sendGetRequest(`/api/v1/product?id=${params.productId}`)
+          const dataFromServer = await sendGetRequest(`api/v1/product?id=${params.productId}`)
           setProductData(dataFromServer)
         }
 
@@ -56,7 +56,7 @@ const ProductDetails = (props) => {
                         </div>
                         <div className="col-md-3 col-6 mx-auto">
                             <div className="card">
-                                <Image imageLink={productData.imageId ? `/api/v1/image?id=${productData.imageId}` : loading} altText={`Zdjecie produktu ${productData.name}`} />
+                                <Image imageLink={productData.imageId ? `api/v1/image?id=${productData.imageId}` : loading} altText={`Zdjecie produktu ${productData.name}`} />
                                 <div className="card-body text-center">
                                     <h4 className="card-title">{productData ? productData.price.toFixed(2) : ''} zł</h4>
                                     <p className="card-text text-muted">Ilość dni oczekiwania na dostawę: {productData.deliveryWaitingTime}</p>

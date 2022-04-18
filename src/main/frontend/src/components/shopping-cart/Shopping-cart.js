@@ -123,7 +123,7 @@ const ShoppingCart = (props) => {
         
         if(productContent){
             const idsList = productContent.map(element => element.productId).join(',')  
-            const dataFromServer = await sendGetRequest(`/api/v1/products?ids=${idsList}`)
+            const dataFromServer = await sendGetRequest(`api/v1/products?ids=${idsList}`)
             setProducts(dataFromServer)
         }   
         if(props.isConst){
@@ -149,7 +149,7 @@ const ShoppingCart = (props) => {
                     paymentMethod: paymentInput,
                     productOrders: cartContent
                 }
-                const dataFromServer = await sendPostRequest("/api/v1/order", orderData)
+                const dataFromServer = await sendPostRequest("api/v1/order", orderData)
                 if(dataFromServer) {
                     clearCart()
                     console.log(`Zamowienie o id = ${dataFromServer.id} zostalo zlozone`)
@@ -216,7 +216,7 @@ const ShoppingCart = (props) => {
 
                                         <div className="row mt-1 mb-2 p-2 bg-light border rounded" key={product.id}>
                                             <a className="col-md-3 mt-1" href={`/product/${product.id}`}>
-                                                <Image imageLink={product.imageId ? `/api/v1/image?id=${product.imageId}` : loading} 
+                                                <Image imageLink={product.imageId ? `api/v1/image?id=${product.imageId}` : loading} 
                                                     altText={`Zdjecie produktu ${product.name}`} />
                                             </a>
                                             <div className="align-items-center align-content-center col-md-6 mt-2 ">
@@ -269,7 +269,7 @@ const ShoppingCart = (props) => {
                                 <div className="card mt-4 shadow-3 bg-light">
                                     <div className="row g-0">
                                         <div className="col-xl-6 bg-image">
-                                            <Image imageLink="/api/v1/image?id=18" altText="Zdjęcie dostawcy doręczającego paczkę" className="img-fluid"/>
+                                            <Image imageLink="api/v1/image?id=18" altText="Zdjęcie dostawcy doręczającego paczkę" className="img-fluid"/>
                                         </div>
                                         <div className="col-xl-6">
                                             <div className="card-body p-md-5 text-black">

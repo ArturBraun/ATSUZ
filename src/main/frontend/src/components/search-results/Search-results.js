@@ -11,7 +11,7 @@ const SearchResults = (props) => {
 
     useEffect( () => {    
       const fetchData = async () => {    
-        const dataFromServer = await sendPostRequest('/api/v1/search', {searchText: params.searchQuery})
+        const dataFromServer = await sendPostRequest('api/v1/search', {searchText: params.searchQuery})
         setProducts(dataFromServer)
 
       }

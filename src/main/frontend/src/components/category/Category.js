@@ -7,7 +7,7 @@ import { redirectToErrorPage } from '../../common/Common-functions'
 
 const Category = (props) => {
     const params = useParams();
-    const baseUrl = `/api/v1/products-by-category?categoryId=${params.categoryId}`
+    const baseUrl = `api/v1/products-by-category?categoryId=${params.categoryId}`
     const urlEndings = {
         'domyslnie': '',
         'nazwaRosnaco': '&sort=name,asc',
